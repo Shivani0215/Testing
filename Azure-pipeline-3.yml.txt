@@ -1,0 +1,18 @@
+
+trigger:
+- master
+
+pool:
+  name: Default
+steps:
+env:
+  AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY)
+  AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_KEY)
+  AWS_DEFAULT_REGION: YOUR_AWS_REGION
+
+- task: AWSShellScript@1
+  inputs:
+    awsCredentials: 'aws_service'
+    regionName: 'ap-south-1'
+    scriptType: 'inline'
+    inlineScript: 'aws s3 ls'
